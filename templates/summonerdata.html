@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Login</title>
+  <title>Summoner Data</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 </head>
 <body>
@@ -8,7 +8,10 @@
 <b>Summoner ID:</b> {{ d["summonerId"] }}<br><br>
 {% for a in range(l) %}
 <b>Champion ID:</b> {{ d["champions"][a]["id"] }}<br>
-<b>Stats:</b> {{ d["champions"][a]["stats"] }}<br><br>
+<b>Stats:</b><br> 
+{% for b in d["champions"][a]["stats"] %}
+{{ b }}: {{ d["champions"][a]["stats"][b] }}<br>
+{% endfor %}<br>
 {% endfor %}
 <center><a href="/" class="pure-button">Home</a></center>
 </body>
