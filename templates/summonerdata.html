@@ -7,7 +7,7 @@
 <b>Summoner Data for:</b> {{ summ }}<br>
 <b>Summoner ID:</b> {{ d["summonerId"] }}<br><br>
 {% for a in range(l) %}
-<b>Champion ID:</b> {{ d["champions"][a]["id"] }}<br>
+<b>Champion:</b> {{ names[d["champions"][a]["id"]] }}<br>
 <b>Stats:</b><br> 
 {% for b in d["champions"][a]["stats"] %}
 {{ b }}: {{ d["champions"][a]["stats"][b] }}<br>
