@@ -7,6 +7,8 @@ def getall():
     for a in range(122):
         b = a+1
         failed = [46,47,49,52,65,66,70,71,73,87,88,93,94,95,97,100,108,109,116,118]
+        for a in failed:
+            every[a]="STUPID RIOT HAS A HORRIBLE API AND HAS NO PAGE FOR THIS NUMBER"
         if not b in failed:
             url = """
         https://na.api.pvp.net/api/lol/static-data/na/v1.2/champion/"""+str(b)+"""?api_key=5ac2dcac-bbf6-4147-b4e7-199143508b63
