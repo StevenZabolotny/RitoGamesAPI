@@ -6,13 +6,14 @@ app = Flask(__name__)
 @app.route("/",methods = ["GET","POST"])
 def home():
     summ = request.form.get("summoner")
+    s = request.form.get("select")
     if (summ is None):
         return render_template("home.html")
     else:
         d = test.getSummonerData(summ)
         l = len(d["champions"])
         every = test.getall()
-        return render_template("summonerdata.html",d=d,l=l,summ=summ,names=every)
+        return render_template("summonerdata.html",d=d,l=l,summ=summ,names=every,s=s)
 
 if __name__=="__main__":
     app.debug=True

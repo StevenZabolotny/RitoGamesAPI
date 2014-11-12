@@ -10,7 +10,11 @@
 <b>Champion:</b> {{ names[d["champions"][a]["id"]] }}<br>
 <b>Stats:</b><br> 
 {% for b in d["champions"][a]["stats"] %}
+{% if b == s %}
+<b>{{ b }}: {{ d["champions"][a]["stats"][b] }}</b><br>
+{% else %}
 {{ b }}: {{ d["champions"][a]["stats"][b] }}<br>
+{% endif %}
 {% endfor %}<br>
 {% endfor %}
 <center><a href="/" class="pure-button">Home</a></center>

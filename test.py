@@ -2,7 +2,15 @@ import urllib2
 import json
 
 def getall():
-    
+    f = open("champions.txt","r")
+    champs = f.readlines()
+    every = {}
+    for a in champs:
+        both = a.split(":")
+        every[int(both[0])] = both[1]
+    return every
+
+def writeall():
     every = {0:"All Champions"}
     for a in range(122):
         b = a+1
@@ -17,9 +25,11 @@ def getall():
             result = request.read()
             d = json.loads(result)
             every[b]=d["name"] + " " + d["title"]
-    return every
+    f = open("champions.txt","w")
+    for a in every.keys():
+        f.write(str(a) + ":" + every[a] + "\n")
+    f.close()
     
-
 def convert(input):
     if isinstance(input, dict):
         return {convert(key): convert(value) for key, value in input.iteritems()}
@@ -59,4 +69,3 @@ def getSummonerData(summ):
     
     print(d["champions"][0]["id"])
     return d
-
