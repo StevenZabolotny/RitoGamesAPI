@@ -1,7 +1,10 @@
 import urllib2
 import json
+import os
 
-def getall():
+def getall(): #This accesses the txt to get all the champions and IDs without having to access the API each time.
+    if not os.path.isfile("champions.txt"):
+        writeall()
     f = open("champions.txt","r")
     champs = f.readlines()
     every = {}
@@ -10,7 +13,7 @@ def getall():
         every[int(both[0])] = both[1]
     return every
 
-def writeall():
+def writeall(): #This uses the Riot API to update the list of champions and their correlated champion IDs. Stored in a txt.
     every = {0:"All Champions"}
     for a in range(122):
         b = a+1
@@ -30,7 +33,7 @@ def writeall():
         f.write(str(a) + ":" + every[a] + "\n")
     f.close()
     
-def convert(input):
+def convert(input): #Gets rid of unicode text
     if isinstance(input, dict):
         return {convert(key): convert(value) for key, value in input.iteritems()}
     elif isinstance(input, list):
@@ -40,7 +43,7 @@ def convert(input):
     else:
         return input
 
-def getSummonerData(summ):
+def getSummonerData(summ): #Gets the summoner data for a certain name
     url = """
     https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/%s?api_key=82bf0ad8-fcb0-4fe8-a911-ab05d5693242
     """
@@ -67,5 +70,4 @@ def getSummonerData(summ):
     #fixed["summonerId"] = d[d.keys()[1]]
     #fixed["champions"] = d[d.keys()[2]]
     
-    print(d["champions"][0]["id"])
     return d
