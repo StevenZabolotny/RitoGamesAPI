@@ -10,7 +10,7 @@
 <b>Champion:</b> {{ names[d["champions"][a]["id"]] }}<br>
 <b>Stats:</b><br> 
 {% for b in d["champions"][a]["stats"] %}
-{% if b == s %}
+{% if b in s %}
 <b>{{ b }}: {{ d["champions"][a]["stats"][b] }}</b><br>
 {% else %}
 {{ b }}: {{ d["champions"][a]["stats"][b] }}<br>

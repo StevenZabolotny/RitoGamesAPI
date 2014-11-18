@@ -6,7 +6,9 @@ app = Flask(__name__)
 @app.route("/",methods = ["GET","POST"])
 def home():
     summ = request.form.get("summoner")
-    s = request.form.get("select")
+    s = []
+    for i in range(1,24):
+        s.append(request.form.get("select" + str(i)))
     if (summ is None):
         return render_template("home.html")
     else:
